@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KGA_OOPConsoleProject.Player
 {
-    public abstract class Player
+    public class Player
     {
         protected string name;
         public string Name { get { return name; } }
@@ -26,6 +26,16 @@ namespace KGA_OOPConsoleProject.Player
         protected int soul;
         public int Soul { get { return soul; } set { soul = value; } }
 
+        public Player(string name)
+        { 
+            this.name = name;
+            this.curHP = 100;
+            this.maxHP = 100;
+            this.attack = 10;
+            this.defense = 10;
+            this.soul = 0;    
+        }
+
         public void ShowInfo()
         {
             Console.SetCursorPosition(0, 20);
@@ -37,6 +47,5 @@ namespace KGA_OOPConsoleProject.Player
             Console.WriteLine();
             Console.SetCursorPosition(0, 0);
         }
-
     }
 }

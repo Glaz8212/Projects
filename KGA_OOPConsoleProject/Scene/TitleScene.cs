@@ -32,7 +32,7 @@ namespace KGA_OOPConsoleProject.Scene
             Console.Clear();
             Console.WriteLine("====================================");
             Console.WriteLine("=                                  =");
-            Console.WriteLine("=           레전드 RPG             =");
+            Console.WriteLine("=           Enforce Soul           =");
             Console.WriteLine("=                                  =");
             Console.WriteLine("====================================");
             Console.WriteLine();
