@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using KGA_OOPConsoleProject.Scene;
-using KGA_OOPConsoleProject.Player;
+using KGA_OOPConsoleProject.Players;
+using KGA_OOPConsoleProject.Scenes;
 
 namespace KGA_OOPConsoleProject
 {
@@ -14,11 +15,11 @@ namespace KGA_OOPConsoleProject
 
         private Scene[] scenes;
         private Scene curScene;
-        public Scene CruScene { get { return curScene; } }
-
+        public Scene CurScene { get { return curScene; } }
+        
         private Player player;
         public Player Player { get { return player; } set { player = value; } }
-
+        
         public void Run()
         {
             Start();
@@ -26,7 +27,6 @@ namespace KGA_OOPConsoleProject
             {
                 Render();
                 Input();
-                Update();
             }
             End();
         }
@@ -38,11 +38,6 @@ namespace KGA_OOPConsoleProject
             curScene.Enter();
         }
 
-        public void Over()
-        {
-            isRunning = false;
-        }
-
         private void Start()
         {
             isRunning = true;
@@ -50,17 +45,16 @@ namespace KGA_OOPConsoleProject
             scenes = new Scene[(int)SceneType.Size];
             scenes[(int)SceneType.Title] = new TitleScene(this);
             scenes[(int)SceneType.Select] = new SelectScene(this);
-            scenes[(int)SceneType.Bonfire] = new BonfireScene(this);
-            scenes[(int)SceneType.Merchant] = new MerchantScene(this);
-            scenes[(int)SceneType.Hidden] = new HiddenScene(this);
-            scenes[(int)SceneType.Parish] = new ParishScene(this);
-            scenes[(int)SceneType.Ruins] = new RuinsScene(this);
-            scenes[(int)SceneType.Garden] = new GardenScene(this);
-            scenes[(int)SceneType.Cave] = new CaveScene(this);
-            scenes[(int)SceneType.Inventory] = new InventoryScene(this);
+            scenes[(int)SceneType.Confirm] = new ConfirmScene(this);
+            scenes[(int)SceneType.Intro] = new IntroScene(this);
+            scenes[(int)SceneType.Spaceship] = new SpaceshipScene(this);
+            scenes[(int)SceneType.Entrance] = new EntranceScene(this);
+            scenes[(int)SceneType.Security] = new SecurityScene(this);
+            scenes[(int)SceneType.Battle1] = new Battle1Scene(this);
+            scenes[(int)SceneType.Battle2] = new Battle2Scene(this);
+            scenes[(int)SceneType.Boss] = new BossScene(this);
 
             curScene = scenes[(int)SceneType.Title];
-            curScene.Enter();
         }
 
         private void End()
@@ -78,9 +72,17 @@ namespace KGA_OOPConsoleProject
             curScene.Input();
         }
 
-        private void Update()
+
+        public void Over()
         {
-            curScene.Update();
+            isRunning = false;
+
+            Console.WriteLine("게임이 종료되었습니다. 메인 메뉴로 돌아갑니다.");
+
+            Thread.Sleep(2000);
+
+            curScene.Exit();
+            curScene = scenes[(int)SceneType.Title];
         }
     }
 }

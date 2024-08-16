@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KGA_OOPConsoleProject.Scene
+namespace KGA_OOPConsoleProject.Scenes
 {
     public abstract class Scene
     {
@@ -18,7 +18,6 @@ namespace KGA_OOPConsoleProject.Scene
         public abstract void Enter();
         public abstract void Render();
         public abstract void Input();
-        public abstract void Update();
         public abstract void Exit();
     }
 }
